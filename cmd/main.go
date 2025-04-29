@@ -14,7 +14,12 @@ func main() {
 	au := usecase.NewAuthUsecase(ai)
 	ac := controller.NewAuthController(au)
 
-	e := router.NewRouter(ac)
+	conn := db.NewDynamoDBClient()
+	pi := infrustructure.NewPostInfrastructure(conn)
+	pu := usecase.NewPostUsecase(pi)
+	pc := controller.NewPostController(pu)
+
+	e := router.NewRouter(ac, pc)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

@@ -9,7 +9,7 @@ import (
 	"circle/pkg/server/controller"
 )
 
-func NewRouter(ac controller.IAuthController) *echo.Echo {
+func NewRouter(ac controller.IAuthController, pc controller.IPostController) *echo.Echo {
 	e := echo.New()
 
 	// panicが発生した場合の処理
@@ -37,6 +37,10 @@ func NewRouter(ac controller.IAuthController) *echo.Echo {
 	auth.POST("/sign-in", ac.SignIn)
 	auth.POST("/sign-up", ac.SignUp)
 	auth.POST("/sign-out", ac.SignOut)
+
+	// Post系
+	post := e.Group("/posts")
+	post.GET("", pc.GetAll)
 
 	return e
 }
