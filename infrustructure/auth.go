@@ -1,6 +1,8 @@
 package infrustructure
 
 import (
+	"circle/db"
+
 	"github.com/supabase-community/gotrue-go/types"
 	"github.com/supabase-community/supabase-go"
 )
@@ -9,6 +11,7 @@ type IAuthInfrustructure interface {
 	SignIn(email, password string) (string, string, error)
 	SignUp(email, password string) (string, error)
 	SignOut() error
+	GetUserByAuthToken(token string) (types.User, error)
 }
 
 type authInfrustructure struct {
@@ -47,4 +50,16 @@ func (ai *authInfrustructure) SignOut() error {
 		return err
 	}
 	return nil
+}
+
+func (ai *authInfrustructure) GetUserByAuthToken(token string) (types.User, error) {
+	userClient, err := db.NewUserClient(token)
+	if err != nil {
+		return types.User{}, err
+	}
+	user, err := userClient.Auth.GetUser()
+	if err != nil {
+		return types.User{}, err
+	}
+	return user.User, nil
 }
