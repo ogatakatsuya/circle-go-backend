@@ -1,11 +1,20 @@
 package main
 
 import (
+	"circle/controller"
+	"circle/db"
+	"circle/infrustructure"
 	"circle/router"
+	"circle/usecase"
 )
 
 func main() {
-	e := router.NewRouter()
+	client := db.NewClient()
+	ai := infrustructure.NewAuthInfrustructure(client)
+	au := usecase.NewAuthUsecase(ai)
+	ac := controller.NewAuthController(au)
+
+	e := router.NewRouter(ac)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

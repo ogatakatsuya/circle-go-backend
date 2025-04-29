@@ -6,7 +6,7 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /api/signup:
+  /auth/sign-up:
     post:
       tags:
         - auth
@@ -25,13 +25,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignUpResponse'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-  /api/signin:
+  /auth/sign-in:
     post:
       tags:
         - auth
@@ -50,12 +44,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignInResponse'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
   /api/update-password:
     post:
       tags:

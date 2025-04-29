@@ -5,10 +5,11 @@ import (
 	echomiddleware "github.com/labstack/echo/v4/middleware"
 	"go.uber.org/zap"
 
+	"circle/controller"
 	"circle/middleware"
 )
 
-func NewRouter() *echo.Echo {
+func NewRouter(ac controller.IAuthController) *echo.Echo {
 	e := echo.New()
 
 	// panicが発生した場合の処理
@@ -30,6 +31,12 @@ func NewRouter() *echo.Echo {
 	e.GET("/test", func(c echo.Context) error {
 		return c.String(200, "Hello, World!")
 	})
+
+	// 認証系
+	auth := e.Group("/auth")
+	auth.POST("/sign-in", ac.SignIn)
+	auth.POST("/sign-up", ac.SignUp)
+	auth.POST("/sign-out", ac.SignOut)
 
 	return e
 }
