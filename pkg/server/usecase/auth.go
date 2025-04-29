@@ -1,6 +1,6 @@
 package usecase
 
-import "circle/infrustructure"
+import "circle/pkg/server/infrustructure"
 
 type IAuthUsecase interface {
 	SignIn(email, password string) (string, string, error)

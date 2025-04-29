@@ -1,11 +1,12 @@
 package controller
 
 import (
-	"circle/controller/schema"
-	"circle/usecase"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+
+	"circle/pkg/server/controller/schema"
+	"circle/pkg/server/usecase"
 )
 
 type IAuthController interface {

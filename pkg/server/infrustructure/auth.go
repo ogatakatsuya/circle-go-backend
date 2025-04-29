@@ -1,10 +1,10 @@
 package infrustructure
 
 import (
-	"circle/db"
-
 	"github.com/supabase-community/gotrue-go/types"
 	"github.com/supabase-community/supabase-go"
+
+	"circle/pkg/server/db"
 )
 
 type IAuthInfrustructure interface {

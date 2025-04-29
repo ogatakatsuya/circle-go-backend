@@ -5,8 +5,8 @@ import (
 	echomiddleware "github.com/labstack/echo/v4/middleware"
 	"go.uber.org/zap"
 
-	"circle/controller"
-	"circle/middleware"
+	"circle/pkg/middleware"
+	"circle/pkg/server/controller"
 )
 
 func NewRouter(ac controller.IAuthController) *echo.Echo {

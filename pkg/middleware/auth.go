@@ -1,13 +1,13 @@
 package middleware
 
 import (
-	"circle/infrustructure"
 	"errors"
 	"fmt"
 
 	"github.com/labstack/echo/v4"
 
-	"circle/context/auth"
+	"circle/pkg/context/auth"
+	"circle/pkg/server/infrustructure"
 )
 
 type IAuthenticateMiddleware interface {
