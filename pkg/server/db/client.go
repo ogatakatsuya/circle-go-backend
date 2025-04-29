@@ -20,8 +20,8 @@ func init() {
 		log.Println("No .env file found, proceeding without it")
 	}
 
-	key := os.Getenv("SUPABASE_KEY")
-	url := os.Getenv("SUPABASE_URL")
+	key = os.Getenv("SUPABASE_KEY")
+	url = os.Getenv("SUPABASE_URL")
 	if key == "" || url == "" {
 		log.Fatal("SUPABASE_KEY and SUPABASE_URL must be set")
 	}
