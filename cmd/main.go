@@ -1,11 +1,11 @@
 package main
 
 import (
-	"circle/controller"
-	"circle/db"
-	"circle/infrustructure"
-	"circle/router"
-	"circle/usecase"
+	"circle/pkg/server/controller"
+	"circle/pkg/server/db"
+	"circle/pkg/server/infrustructure"
+	"circle/pkg/server/router"
+	"circle/pkg/server/usecase"
 )
 
 func main() {
